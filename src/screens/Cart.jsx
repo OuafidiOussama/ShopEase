@@ -1,28 +1,71 @@
 import { Alert, Pressable, ScrollView, Text, View } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
+import { useDispatch, useSelector } from "react-redux";
+import moment from "moment";
+import {addToHistory} from "../redux/Purchases"
+import { removeAllCourses, removeCours } from "../redux/Courses";
 
 export default function Cart() {
+  const dispatch = useDispatch()
+  const courses = useSelector(state=>state.Courses.courses)
+  const SelectedCourses = courses.filter(cours => cours.selected === true);
+  const totalPrice = SelectedCourses
+  .reduce((acc, cours) => acc + cours.price, 0)
+  .toFixed(2);
+  const names = SelectedCourses.map((cours) => cours.title);
+  const prices = SelectedCourses.map((cours) => cours.price);
+
+
   handlePaiment = () => {
-    Alert.alert("Alert", "Paid");
+    Alert.alert("Alert", "Paiment Successfull!");
+    const date =moment().format('L,LTS');
+    const newPurchase = {totalPrice,date,names,prices}
+    dispatch(addToHistory(newPurchase));
+    dispatch(removeAllCourses());
+  };
+
+  handleDelete = (id) => {
+    Alert.alert("Alert", "Cours Removed!")
+    dispatch(removeCours(id));
   };
   return (
     <ScrollView>
-      <View>
-        <View style={Styles.cours}>
-          <Text style={Styles.text}>Cours Name</Text>
-          <View style={Styles.action}>
-            <Text style={Styles.text}>199 $</Text>
-            <MaterialIcons name="delete-sweep" size={24} color="red" />
-          </View>
+      {SelectedCourses.length === 0 ? (
+        <View>
+          <Text style={Styles.textVide}>Empty Cart</Text>
         </View>
-      </View>
+      ) : (
+        SelectedCourses.map((cours, index) => (
+          <View key={index}>
+            <View style={Styles.cours}>
+              <Text style={Styles.text}>{cours.title}</Text>
+              <View style={Styles.action}>
+                <Text style={Styles.text}>${cours.price}</Text>
+                <MaterialIcons
+                  name="delete-sweep"
+                  size={24}
+                  color="red"
+                  onPress={() => handleDelete(cours.id)}
+                />
+              </View>
+            </View>
+          </View>
+        ))
+      )}
+    
       <View style={Styles.paye}>
         <Text style={Styles.total}>
-          Total : <Text style={Styles.price}>199 $</Text>
+          Total : <Text style={Styles.price}>${totalPrice}</Text>
         </Text>
-        <Pressable style={Styles.button} onPress={handlePaiment}>
-          <Text style={Styles.buttonText}>Payer</Text>
+        {SelectedCourses.length === 0 ? (
+        <Pressable disabled style={Styles.buttonDisabled} >
+          <Text style={Styles.buttonText}>Pay</Text>
         </Pressable>
+        ) : (
+          <Pressable  style={Styles.button} onPress={handlePaiment}>
+            <Text style={Styles.buttonText}>Pay</Text>
+          </Pressable>
+        )}
       </View>
     </ScrollView>
   );

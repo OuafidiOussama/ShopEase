@@ -7,11 +7,15 @@ import {
   Alert,
   Image,
 } from "react-native";
+import { useDispatch } from "react-redux";
+import { addCoursToCart } from "../redux/Courses";
 
 export default function Courses(cours) {
-  const {title, description, image, price, id} = cours.route.params.cours.item
+  const { title, description, image, price, id } = cours.route.params.cours.item;
+  const dispatch = useDispatch()
   const addToCart = () => {
     Alert.alert("Alert", "Successfully added to cart");
+    dispatch(addCoursToCart(id))
   };
   return (
     <ScrollView>

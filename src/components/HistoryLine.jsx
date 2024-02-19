@@ -1,10 +1,10 @@
 import { Text, View } from "react-native";
 
-export default function HistoryLine() {
+export default function HistoryLine({name, price}) {
   return (
     <View style={Styles.info}>
-      <Text style={Styles.coursName}>Course Name</Text>
-      <Text style={Styles.price}>199 $</Text>
+      <Text style={Styles.coursName}>{name}</Text>
+      <Text style={Styles.price}>${price}</Text>
     </View>
   );
 }

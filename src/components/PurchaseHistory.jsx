@@ -4,13 +4,14 @@ import { useState } from "react";
 import { Text, View } from "react-native";
 import HistoryLine from "./HistoryLine";
 
-export default function PurchaseHistory() {
+export default function PurchaseHistory({purchase}) {
+  const {totalPrice, prices, names, date} = purchase
   const [isShowing, setIsShowing] = useState(false);
   return (
-    <>
+    <View style={Styles.container}>
       <View style={Styles.info}>
-        <Text style={Styles.text}>199 $</Text>
-        <Text style={Styles.text}>05 07 2023 07:18</Text>
+        <Text style={Styles.text}>${totalPrice}</Text>
+        <Text style={Styles.text}>{date}</Text>
       </View>
       {isShowing ? (
         <Ionicons
@@ -30,16 +31,20 @@ export default function PurchaseHistory() {
             onPress={() => setIsShowing(true)}
           />
           <View style={Styles.line}></View>
-          <HistoryLine />
-          <HistoryLine />
-          <HistoryLine />
+          {names.map((name, index) =><HistoryLine key={index} name={name} price={prices[index]} />)}
         </>
       )}
-    </>
+    </View>
   );
 }
 
 const Styles = {
+  container:{
+    backgroundColor: "snow",
+    padding: 20,
+    borderRadius: 10,
+    marginBottom: 20
+  },
   info: {
     flexDirection: "row",
     justifyContent: "space-between",
