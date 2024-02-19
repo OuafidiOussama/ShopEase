@@ -1,4 +1,12 @@
-import { View, Text, ScrollView, StyleSheet, Pressable, Alert, Image, } from 'react-native'
+import {
+  View,
+  Text,
+  ScrollView,
+  StyleSheet,
+  Pressable,
+  Alert,
+  Image,
+} from "react-native";
 
 export default function Courses() {
   const addToCart = () => {
@@ -25,7 +33,7 @@ export default function Courses() {
         <Text style={styles.textPrice}>1999 $</Text>
       </View>
     </ScrollView>
-  )
+  );
 }
 
 const styles = StyleSheet.create({

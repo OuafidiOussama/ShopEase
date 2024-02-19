@@ -1,10 +1,10 @@
-import { Alert, Pressable, ScrollView, Text, View } from 'react-native'
+import { Alert, Pressable, ScrollView, Text, View } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 
 export default function Cart() {
-  handlePaiment = () =>{
-    Alert.alert("Alert", "Paid")
-  }
+  handlePaiment = () => {
+    Alert.alert("Alert", "Paid");
+  };
   return (
     <ScrollView>
       <View>
@@ -12,26 +12,21 @@ export default function Cart() {
           <Text style={Styles.text}>Cours Name</Text>
           <View style={Styles.action}>
             <Text style={Styles.text}>199 $</Text>
-            <MaterialIcons
-              name="delete-sweep"
-              size={24}
-              color="red"
-            />
+            <MaterialIcons name="delete-sweep" size={24} color="red" />
           </View>
         </View>
       </View>
-    <View style={Styles.paye}>
-      <Text style={Styles.total}>
-        Total : <Text style={Styles.price}>199 $</Text>
-      </Text>
-      <Pressable  style={Styles.button} onPress={handlePaiment}>
-        <Text style={Styles.buttonText}>Payer</Text>
-      </Pressable>
-    </View>
-  </ScrollView>
+      <View style={Styles.paye}>
+        <Text style={Styles.total}>
+          Total : <Text style={Styles.price}>199 $</Text>
+        </Text>
+        <Pressable style={Styles.button} onPress={handlePaiment}>
+          <Text style={Styles.buttonText}>Payer</Text>
+        </Pressable>
+      </View>
+    </ScrollView>
   );
 }
-
 
 const Styles = {
   cours: {
