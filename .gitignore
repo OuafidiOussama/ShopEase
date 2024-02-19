@@ -2,7 +2,6 @@
 
 # dependencies
 node_modules/
-Navigation
 # Expo
 .expo/
 dist/

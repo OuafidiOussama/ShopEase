@@ -1,5 +1,5 @@
-import MyLibrary from "./src/screens/MyLibrary";
+import Navigation from "./src/Navigation/Navigation";
 
 export default function App() {
-  return <MyLibrary />;
+  return <Navigation />;
 }

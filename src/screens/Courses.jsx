@@ -8,29 +8,30 @@ import {
   Image,
 } from "react-native";
 
-export default function Courses() {
+export default function Courses(cours) {
+  const {title, description, image, price, id} = cours.route.params.cours.item
   const addToCart = () => {
     Alert.alert("Alert", "Successfully added to cart");
   };
   return (
     <ScrollView>
-      <Text style={styles.title}>Course Title</Text>
+      <Text style={styles.title}>{title}</Text>
       <Image
         source={{
-          uri: "https://miro.medium.com/v2/resize:fit:1400/1*LyZcwuLWv2FArOumCxobpA.png",
+          uri: image,
         }}
         style={styles.image}
       />
       <View style={styles.descContainer}>
-        <Text style={styles.description}>Product Description</Text>
-        <Text style={styles.description}>Product Description</Text>
-        <Text style={styles.description}>Product Description</Text>
+        <Text style={styles.description}>{description}</Text>
+        <Text style={styles.description}>{description}</Text>
+        <Text style={styles.description}>{description}</Text>
       </View>
       <View style={styles.price}>
         <Pressable style={styles.button} onPress={addToCart}>
-          <Text style={styles.buttonAchat}>Add To Cart</Text>
+          <Text style={styles.purchaceButton}>Add To Cart</Text>
         </Pressable>
-        <Text style={styles.textPrice}>1999 $</Text>
+        <Text style={styles.textPrice}>${price}</Text>
       </View>
     </ScrollView>
   );
@@ -75,9 +76,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderRadius: 10,
   },
-  buttonAchat: {
+  purchaceButton: {
     color: "white",
-    fontSize: 10,
+    fontSize: 12,
     fontWeight: "bold",
   },
   title: {

@@ -1,14 +1,16 @@
 import { Alert, Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 export default function CoursCard({ cours }) {
+  const {navigate} = useNavigation()
   const { item } = cours;
   addToCart = () => {
     Alert.alert("Alert", "Successfully added to cart");
   };
   return (
-    <Pressable style={styles.container}>
+    <Pressable style={styles.container} onPress={()=>navigate('Courses', {cours: cours})}>
       <Image
         source={{
           uri: item.image,
