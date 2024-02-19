@@ -1,7 +1,18 @@
-import { Text } from 'react-native'
+import { FlatList } from 'react-native'
+import data from '../data/Data'
+import { useEffect, useState } from 'react'
+import CoursCard from '../components/CoursCard'
 
 export default function Collection() {
+  const [courses, setCourses] = useState(null)
+  useEffect(()=>{
+    setCourses(data)
+  },[])
+  
   return (
-    <Text>Collection</Text>
+    <FlatList 
+    data={courses}
+    keyExtractor={(cours)=> cours.id}
+    renderItem={(cours)=> <CoursCard cours={cours} />}/>
   )
 }

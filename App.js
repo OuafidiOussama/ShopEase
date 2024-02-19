@@ -1,10 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import Cart from './src/screens/Cart';
+import Collection from './src/screens/Collection';
 
 
 export default function App() {
   return (
-    <Cart />
+    <Collection />
   );
 }
