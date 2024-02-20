@@ -1,3 +1,4 @@
+import React from "react";
 import {  ScrollView } from "react-native";
 import PurchaseHistory from "../components/PurchaseHistory";
 import { useSelector } from "react-redux";

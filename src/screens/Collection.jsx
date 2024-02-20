@@ -1,3 +1,4 @@
+import React from "react";
 import { FlatList, Text } from "react-native";
 import CoursCard from "../components/CoursCard";
 import { useSelector } from "react-redux";

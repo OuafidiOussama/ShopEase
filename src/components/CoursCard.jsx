@@ -1,3 +1,4 @@
+import React from "react";
 import { Alert, Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
